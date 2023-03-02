@@ -21,7 +21,7 @@ class Program
             shiftsArray[i] = shiftsArray[i - 1].Substring(1) + shiftsArray[i - 1][0];
         }
 
-        Array.Sort(shiftsArray);
+        Array.Sort(shiftsArray, String.CompareOrdinal);
 
         for (int i = 0; i < encodingString.Length; ++i)
         {
