@@ -1,2 +1,2 @@
 # SPbU-prog-practice-sem2
-Homeworks, tests and course materials for 2 semester in C#
+Homeworks and tests for 2 semester of SPbU C# course
