@@ -7,6 +7,8 @@ class Program
 {
     const int AlphabetSize = 65536;
 
+    //encodes the original string and returns BWT-encoded string
+    //and position of last original string's symbol 
     static (string, int) Encoder(string encodingString)
     {
         StringBuilder resultString = new StringBuilder();
@@ -34,6 +36,8 @@ class Program
         return (resultString.ToString(), positionOfStringEnd);
     }
 
+    //decodes the BWT-encoded string with position of last original string's symbol
+    //and returns decoded original string
     static string Decoder(string decodingString, int positionOfStringEnd)
     {
         StringBuilder resultString = new StringBuilder();
