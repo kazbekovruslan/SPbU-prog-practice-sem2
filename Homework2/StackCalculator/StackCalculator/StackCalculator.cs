@@ -65,7 +65,7 @@ public class StackCalculator
     /// </summary>
     /// <param name="expression">Expression in postfix form.</param>
     /// <returns>Answer of evaluating of the expression in postfix form.</returns>
-    public double EvaluateExpression(string expression)
+    public double EvaluateExpression(string? expression)
     {
         if (expression == null)
         {
