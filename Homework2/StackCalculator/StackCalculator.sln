@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCalculator", "StackCalculator\StackCalculator.csproj", "{5918A19D-F511-41C3-B6AA-96F672425457}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCalculatorTests", "StackCalculatorTests\StackCalculatorTests.csproj", "{832864FE-1B84-4B0A-B59F-D404CE77BF6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{5918A19D-F511-41C3-B6AA-96F672425457}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5918A19D-F511-41C3-B6AA-96F672425457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5918A19D-F511-41C3-B6AA-96F672425457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{832864FE-1B84-4B0A-B59F-D404CE77BF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{832864FE-1B84-4B0A-B59F-D404CE77BF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{832864FE-1B84-4B0A-B59F-D404CE77BF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{832864FE-1B84-4B0A-B59F-D404CE77BF6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
