@@ -69,12 +69,12 @@ public class StackCalculator
     {
         if (expression == null)
         {
-            throw new InvalidDataException("Expression can't be null!");
+            throw new ArgumentNullException("Expression can't be null!");
         }
 
         if (expression == string.Empty)
         {
-            throw new InvalidDataException("Expression can't be empty!");
+            throw new ArgumentException("Expression can't be empty!");
         }
 
         var expressionElementsArray = expression.Split();
