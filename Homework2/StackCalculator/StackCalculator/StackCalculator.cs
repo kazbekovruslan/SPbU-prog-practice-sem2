@@ -54,7 +54,7 @@ public class StackCalculator
                 }
                 else
                 {
-                    throw new ArgumentException("Wrong expression: division by zero!");
+                    throw new DivideByZeroException("Wrong expression: division by zero!");
                 }
                 break;
         }
