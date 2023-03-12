@@ -17,10 +17,13 @@ public class StackCalculator
     }
 
     /// <summary>
-    /// Checks if double number
+    /// Checks if double number is (very close to) zero.
     /// </summary>
-    /// <param name="number"></param>
-    /// <returns></returns>
+    /// <param name="number">Double number you want to compare with zero.</param>
+    /// <returns>
+    /// true - if number is zero (close to zero),
+    /// false - if number isn't zero.
+    /// </returns>
     private static bool IsZero(double number)
         => Math.Abs(number) < 0.00001;
 
