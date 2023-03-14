@@ -1,7 +1,5 @@
 namespace StackCalculatorTests;
 
-using NUnit.Framework;
-
 using StackCalculator;
 
 public class StackCalculatorTests
