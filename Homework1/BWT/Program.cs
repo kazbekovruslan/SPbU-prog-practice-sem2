@@ -74,7 +74,7 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.WriteLine("This is BWT-OldEncoder-OldDecoder.");
+        Console.WriteLine("This is BWT-Encoder-Decoder.");
         Console.Write("Enter 1 to encode, 2 to decode: ");
 
         int typeOfOperation = 0;
