@@ -3,37 +3,91 @@
 using System;
 using System.Text;
 
+class RotationsComparer : IComparer<int>
+{
+    private string str;
+
+    public RotationsComparer(string str)
+    {
+        this.str = str;
+    }
+
+    public int Compare(int first, int second)
+    {
+        for (var i = 0; i < str.Length; ++i)
+        {
+            if (str[(first + i) % str.Length] > str[(second + i) % str.Length])
+            {
+                return 1;
+            }
+            else if (str[(first + i) % str.Length] < str[(second + i) % str.Length])
+            {
+                return -1;
+            }
+        }
+        return 0;
+    }
+}
+
 class Program
 {
     const int AlphabetSize = 65536;
 
     //encodes the original string and returns BWT-encoded string
     //and position of last original string's symbol 
+
+    // static (string, int) Encoder(string encodingString)
+    // {
+    //     StringBuilder resultString = new StringBuilder();
+    //     int positionOfStringEnd = 0;
+
+    //     var shiftsArray = new string[encodingString.Length];
+    //     shiftsArray[0] = encodingString;
+    //     for (int i = 1; i < encodingString.Length; ++i)
+    //     {
+    //         shiftsArray[i] = shiftsArray[i - 1].Substring(1) + shiftsArray[i - 1][0];
+    //     }
+
+    //     Array.Sort(shiftsArray, String.CompareOrdinal);
+
+    //     for (int i = 0; i < encodingString.Length; ++i)
+    //     {
+    //         resultString.Append(shiftsArray[i][^1]);
+
+    //         if (shiftsArray[i] == encodingString)
+    //         {
+    //             positionOfStringEnd = i;
+    //         }
+    //     }
+
+    //     return (resultString.ToString(), positionOfStringEnd);
+    // }
+
     static (string, int) Encoder(string encodingString)
     {
-        StringBuilder resultString = new StringBuilder();
-        int positionOfStringEnd = 0;
+        var rotations = new int[encodingString.Length];
 
-        var shiftsArray = new string[encodingString.Length];
-        shiftsArray[0] = encodingString;
-        for (int i = 1; i < encodingString.Length; ++i)
+        for (var i = 0; i < rotations.Length; ++i)
         {
-            shiftsArray[i] = shiftsArray[i - 1].Substring(1) + shiftsArray[i - 1][0];
+            rotations[i] = i;
         }
 
-        Array.Sort(shiftsArray, String.CompareOrdinal);
+        Array.Sort(rotations, new RotationsComparer(encodingString));
 
-        for (int i = 0; i < encodingString.Length; ++i)
+        var result = new StringBuilder();
+        int positionOfStringEnd = 0;
+
+        for (var i = 0; i < encodingString.Length; ++i)
         {
-            resultString.Append(shiftsArray[i][^1]);
+            result.Append(encodingString[(rotations[i] + encodingString.Length - 1) % encodingString.Length]);
 
-            if (shiftsArray[i] == encodingString)
+            if (rotations[i] == 0)
             {
                 positionOfStringEnd = i;
             }
         }
 
-        return (resultString.ToString(), positionOfStringEnd);
+        return (result.ToString(), positionOfStringEnd);
     }
 
     //decodes the BWT-encoded string with position of last original string's symbol
@@ -43,27 +97,27 @@ class Program
         StringBuilder resultString = new StringBuilder();
 
         var decodingStringSymbolFrequences = new int[AlphabetSize];
-        for (int i = 0; i < decodingString.Length; ++i)
+        for (var i = 0; i < decodingString.Length; ++i)
         {
             ++decodingStringSymbolFrequences[decodingString[i]];
         }
 
         int temporarySum = 0;
-        for (int i = 0; i < AlphabetSize; ++i)
+        for (var i = 0; i < AlphabetSize; ++i)
         {
             temporarySum += decodingStringSymbolFrequences[i];
             decodingStringSymbolFrequences[i] = temporarySum - decodingStringSymbolFrequences[i];
         }
 
         var nextSymbols = new int[decodingString.Length];
-        for (int i = 0; i < decodingString.Length; ++i)
+        for (var i = 0; i < decodingString.Length; ++i)
         {
             nextSymbols[decodingStringSymbolFrequences[decodingString[i]]] = i;
             ++decodingStringSymbolFrequences[decodingString[i]];
         }
 
         int j = nextSymbols[positionOfStringEnd];
-        for (int i = 0; i < decodingString.Length; ++i)
+        for (var i = 0; i < decodingString.Length; ++i)
         {
             resultString.Append(decodingString[j]);
             j = nextSymbols[j];
