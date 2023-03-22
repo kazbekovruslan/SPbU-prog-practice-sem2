@@ -36,33 +36,6 @@ class Program
     //encodes the original string and returns BWT-encoded string
     //and position of last original string's symbol 
 
-    // static (string, int) Encoder(string encodingString)
-    // {
-    //     StringBuilder resultString = new StringBuilder();
-    //     int positionOfStringEnd = 0;
-
-    //     var shiftsArray = new string[encodingString.Length];
-    //     shiftsArray[0] = encodingString;
-    //     for (int i = 1; i < encodingString.Length; ++i)
-    //     {
-    //         shiftsArray[i] = shiftsArray[i - 1].Substring(1) + shiftsArray[i - 1][0];
-    //     }
-
-    //     Array.Sort(shiftsArray, String.CompareOrdinal);
-
-    //     for (int i = 0; i < encodingString.Length; ++i)
-    //     {
-    //         resultString.Append(shiftsArray[i][^1]);
-
-    //         if (shiftsArray[i] == encodingString)
-    //         {
-    //             positionOfStringEnd = i;
-    //         }
-    //     }
-
-    //     return (resultString.ToString(), positionOfStringEnd);
-    // }
-
     static (string, int) Encoder(string encodingString)
     {
         var rotations = new int[encodingString.Length];
