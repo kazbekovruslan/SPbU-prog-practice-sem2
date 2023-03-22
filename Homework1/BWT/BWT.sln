@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWT", "BWT\BWT.csproj", "{2C849307-CED8-4DA7-9006-888BA64B712D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWT", "BWT.csproj", "{EFA062B8-8579-4565-9FD3-41F39C4E2CE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2C849307-CED8-4DA7-9006-888BA64B712D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C849307-CED8-4DA7-9006-888BA64B712D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C849307-CED8-4DA7-9006-888BA64B712D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C849307-CED8-4DA7-9006-888BA64B712D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFA062B8-8579-4565-9FD3-41F39C4E2CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA062B8-8579-4565-9FD3-41F39C4E2CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA062B8-8579-4565-9FD3-41F39C4E2CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA062B8-8579-4565-9FD3-41F39C4E2CE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
