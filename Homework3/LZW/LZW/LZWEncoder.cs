@@ -59,7 +59,7 @@ public static class LZWEncoder
 
         //хуйня про последний байтик
 
-        if (buffer.BufferedByte != 0)
+        if (buffer.CurrentLengthOfBufferedByte != 0)
         {
             buffer.PutBufferedByteInCompressedBytes();
         }
