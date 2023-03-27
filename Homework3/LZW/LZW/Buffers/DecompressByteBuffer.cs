@@ -76,10 +76,10 @@ class DecompressByteBuffer
 
     private byte[] ConvertFromIncompleteByteToBits(byte element)
     {
-        var bits = new byte[CurrentByteSize];
+        var bits = new byte[CurrentByteSize - CurrentLengthOfBuffer];
 
         var digitCounter = 0;
-        for (var i = CurrentByteSize - 1; element > 0; --i)
+        for (var i = CurrentByteSize - CurrentLengthOfBuffer - 1; element > 0; --i)
         {
             bits[i] = (byte)(element % 2);
             element /= 2;
