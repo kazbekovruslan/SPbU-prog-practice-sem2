@@ -1,9 +1,20 @@
 namespace LZW;
 
+/// <summary>
+/// Class that represents LZW-encoder.
+/// </summary>
 public static class LZWEncoder
 {
-    public const int maximumAmountOfCodesNumber = 65536;
+    /// <summary>
+    /// Maximum available amount of codes.
+    /// </summary>
+    public const int maximumAmountOfCodes = 65536;
 
+    /// <summary>
+    /// Encodes input array of bytes with LZW-algorithm.
+    /// </summary>
+    /// <param name="input">Input array of bytes.</param>
+    /// <returns>Array of LZW-decoded bytes.</returns>
     public static byte[] Encode(byte[] input)
     {
         if (input.Length == 0)
@@ -11,13 +22,18 @@ public static class LZWEncoder
             throw new ArgumentException("Input bytes stream can't be empty!");
         }
 
+        if (input == null)
+        {
+            throw new ArgumentNullException("Input bytes stream can't be null!");
+        }
+
         var trie = new Trie();
         trie.InitTrie();
-        var buffer = new ByteBuffer();
+        var buffer = new CompressByteBuffer();
 
         var stream = new List<byte>();
 
-        var currentMaximumAmountOfCodesNumber = 512;
+        var currentmaximumAmountOfCodes = 512;
         for (var i = 0; i < input.Length; ++i)
         {
             var elementToAdd = new List<byte>();
@@ -34,21 +50,19 @@ public static class LZWEncoder
                 buffer.Add(trie.GetValueOfElement(stream));
                 trie.Add(elementToAdd);
 
-                //uvelichenie i perestroyka
-                if (trie.Size == maximumAmountOfCodesNumber)
+                if (trie.Size == maximumAmountOfCodes)
                 {
-                    currentMaximumAmountOfCodesNumber = 512;
+                    currentmaximumAmountOfCodes = 512;
                     buffer.CurrentByteSize = 9;
                     trie = new();
                     trie.InitTrie();
                 }
 
-                if (trie.Size == currentMaximumAmountOfCodesNumber)
+                if (trie.Size == currentmaximumAmountOfCodes)
                 {
-                    currentMaximumAmountOfCodesNumber *= 2;
+                    currentmaximumAmountOfCodes *= 2;
                     ++buffer.CurrentByteSize;
                 }
-                //konec
 
                 stream.Clear();
                 stream.Add(input[i]);
@@ -56,8 +70,6 @@ public static class LZWEncoder
         }
 
         buffer.Add(trie.GetValueOfElement(stream));
-
-        //хуйня про последний байтик
 
         if (buffer.CurrentLengthOfBufferedByte != 0)
         {
