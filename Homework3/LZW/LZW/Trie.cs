@@ -78,13 +78,12 @@ internal class Trie
         {
             if (!currentVertex.Next.ContainsKey(currentByte))
             {
-                currentVertex.Next[currentByte] = new Vertex();
+                currentVertex.Next[currentByte] = new Vertex(Size++);
             }
 
             currentVertex = currentVertex.Next[currentByte];
         }
 
-        ++Size;
         currentVertex.IsTerminal = true;
 
         return true;
