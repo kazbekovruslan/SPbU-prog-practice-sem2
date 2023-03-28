@@ -1,9 +1,9 @@
 namespace LZW;
 
 /// <summary>
-/// Class that represents LZW-Decoder.
+/// Class that represents LZW-decoder.
 /// </summary>
-public class LZWDecoder
+public static partial class LZWDecoder
 {
     /// <summary>
     /// Decodes input array of LZW-encoded bytes.

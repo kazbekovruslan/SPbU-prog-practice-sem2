@@ -3,7 +3,7 @@ namespace LZW;
 /// <summary>
 /// Class that represents LZW-encoder.
 /// </summary>
-public static class LZWEncoder
+public static partial class LZWEncoder
 {
     /// <summary>
     /// Maximum available amount of codes.
