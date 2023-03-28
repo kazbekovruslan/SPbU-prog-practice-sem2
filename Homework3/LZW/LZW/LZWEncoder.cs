@@ -15,16 +15,16 @@ public static class LZWEncoder
     /// </summary>
     /// <param name="input">Input array of bytes.</param>
     /// <returns>Array of LZW-decoded bytes.</returns>
-    public static byte[] Encode(byte[] input)
+    public static byte[] Encode(byte[]? input)
     {
-        if (input.Length == 0)
-        {
-            throw new ArgumentException("Input bytes stream can't be empty!");
-        }
-
         if (input == null)
         {
             throw new ArgumentNullException("Input bytes stream can't be null!");
+        }
+
+        if (input.Length == 0)
+        {
+            throw new ArgumentException("Input bytes stream can't be empty!");
         }
 
         var trie = new Trie();
