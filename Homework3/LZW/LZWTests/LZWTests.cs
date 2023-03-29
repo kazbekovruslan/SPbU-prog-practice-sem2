@@ -9,7 +9,7 @@ public class LZWTests
         yield return new TestCaseData("../../../testFiles/more.mp4");
         yield return new TestCaseData("../../../testFiles/v.mp4");
         yield return new TestCaseData("../../../testFiles/WarAndPeace.txt");
-        yield return new TestCaseData("../../../testFiles/minesweeper.exeй");
+        yield return new TestCaseData("../../../testFiles/minesweeper.exe");
     }
 
     [Test]
