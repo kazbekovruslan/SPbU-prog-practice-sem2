@@ -1,4 +1,4 @@
-﻿namespace UniqueList;
+﻿namespace Lists;
 
 using System;
 

@@ -1,4 +1,4 @@
-namespace UniqueList;
+namespace Lists;
 
 class UniqueList : List
 {

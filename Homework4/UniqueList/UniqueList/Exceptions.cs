@@ -1,4 +1,4 @@
-namespace UniqueList;
+namespace Lists;
 
 [System.Serializable]
 public class ElementDoesntExistException : System.Exception
