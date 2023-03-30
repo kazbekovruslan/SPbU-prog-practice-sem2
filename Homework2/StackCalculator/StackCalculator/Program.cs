@@ -31,7 +31,10 @@ class Program
             result = stackCalculator.EvaluateExpression(expression);
             Console.WriteLine($"Result of calculating your expression by LINKED LIST stack: {result}");
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is ArgumentException ||
+                                   ex is ArgumentNullException ||
+                                   ex is DivideByZeroException ||
+                                   ex is InvalidOperationException)
         {
             Console.WriteLine(ex.Message);
         }
