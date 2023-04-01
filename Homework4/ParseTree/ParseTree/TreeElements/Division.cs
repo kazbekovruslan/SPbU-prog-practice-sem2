@@ -13,7 +13,7 @@ public class Division : Operator
 
     public override void Print()
     {
-        Console.Write("( * ");
+        Console.Write("( / ");
         base.Print();
     }
 }
