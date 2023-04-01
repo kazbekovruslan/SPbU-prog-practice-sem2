@@ -40,10 +40,10 @@ public class ParseTree
                 throw new ArgumentException("Incorrect expression!");
             }
 
-            // а не только цифры?
-            if (char.IsDigit(splittedExpression[index][0]))
+            var parsedNumber = 0;
+            if (int.TryParse(splittedExpression[index], out parsedNumber))
             {
-                return new Operand(int.Parse(splittedExpression[index]));
+                return new Operand(parsedNumber);
             }
 
             Operator newSubTree = splittedExpression[index] switch
