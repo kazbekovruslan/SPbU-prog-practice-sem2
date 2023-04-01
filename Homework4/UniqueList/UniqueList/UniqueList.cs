@@ -1,5 +1,8 @@
 namespace Lists;
 
+/// <summary>
+/// Class that represents Unique List data structure.
+/// </summary>
 public class UniqueList : List
 {
     private bool Contains(int value)
@@ -22,6 +25,8 @@ public class UniqueList : List
         return false;
     }
 
+    /// <inheritdoc/>
+    /// <exception cref="ElementAlreadyExistsException"></exception>
     public override void Add(int value)
     {
         if (Contains(value))
@@ -32,6 +37,7 @@ public class UniqueList : List
         Head = new Node(value, Head);
     }
 
+    /// <inheritdoc/>
     public override void ReplaceElementByIndex(int value, int index)
     {
         if (Head == null)

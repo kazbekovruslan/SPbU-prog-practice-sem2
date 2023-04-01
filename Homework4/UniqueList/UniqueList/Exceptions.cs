@@ -1,5 +1,8 @@
 namespace Lists;
 
+/// <summary>
+/// Exception that is thrown when you want to interact with element that doesn't exist.
+/// </summary>
 [System.Serializable]
 public class ElementDoesntExistException : System.Exception
 {
@@ -11,6 +14,9 @@ public class ElementDoesntExistException : System.Exception
         System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
 }
 
+/// <summary>
+/// Exception that is thrown when you want to interact with element that already exist.
+/// </summary>
 [System.Serializable]
 public class ElementAlreadyExistsException : System.Exception
 {

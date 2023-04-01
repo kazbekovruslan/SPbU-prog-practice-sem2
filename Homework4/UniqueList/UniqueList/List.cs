@@ -1,7 +1,13 @@
 ﻿namespace Lists;
 
+/// <summary>
+/// Class that represents List data structure.
+/// </summary>
 public class List
 {
+    /// <summary>
+    /// Head of the list.
+    /// </summary>
     protected Node? Head;
 
     public List()
@@ -9,10 +15,19 @@ public class List
         this.Head = null;
     }
 
+    /// <summary>
+    /// Class that represents separate element of the list - node.
+    /// </summary>
     protected class Node
     {
+        /// <summary>
+        /// Value of the node.
+        /// </summary>
         public int Value;
 
+        /// <summary>
+        /// Next node for this node.
+        /// </summary>
         public Node? Next;
 
         public Node(int value, Node? next)
@@ -22,11 +37,20 @@ public class List
         }
     }
 
+    /// <summary>
+    /// Adds the element to the top of the list.
+    /// </summary>
+    /// <param name="value">Value of the element.</param>
     public virtual void Add(int value)
     {
         Head = new Node(value, Head);
     }
 
+    /// <summary>
+    /// Removes the element from the list.
+    /// </summary>
+    /// <param name="value">Value of removing element.</param>
+    /// <exception cref="ElementDoesntExistException"></exception>
     public void Remove(int value)
     {
         if (Head == null)
@@ -57,6 +81,11 @@ public class List
         }
     }
 
+    /// <summary>
+    /// Replaces an element with a new one by index.
+    /// </summary>
+    /// <param name="value">Value of the new element.</param>
+    /// <param name="index">Index of the element that will be replaced.</param>
     public virtual void ReplaceElementByIndex(int value, int index)
     {
         if (Head == null)
@@ -79,6 +108,9 @@ public class List
         currentNode.Value = value;
     }
 
+    /// <summary>
+    /// Prints list.
+    /// </summary>
     public void Print()
     {
         if (Head == null)
@@ -97,6 +129,10 @@ public class List
         System.Console.WriteLine();
     }
 
+    /// <summary>
+    /// Checks if list is empty.
+    /// </summary>
+    /// <returns>true - if list is empty, false - if list is not empty.</returns>
     public bool IsEmpty()
     {
         return Head == null;
