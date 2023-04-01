@@ -9,7 +9,7 @@ public class Addition : Operator
 
     public override void Print()
     {
-        Console.WriteLine("( + ");
+        Console.Write("( + ");
         base.Print();
     }
 }
