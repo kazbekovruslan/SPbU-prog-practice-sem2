@@ -28,7 +28,12 @@ public class ParseTree
 
     private void BuildTree(string expression)
     {
-        var splittedExpression = expression.Replace("(", " ").Replace(")", " ").Split(" ");
+        if (!IsBracketBalanced(expression))
+        {
+            throw new ArgumentException("Incorrect expression!");
+        }
+
+        var splittedExpression = expression.Split(new char[] { '(', ')', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
         var index = -1;
 
@@ -68,6 +73,30 @@ public class ParseTree
         {
             throw new ArgumentException("Incorrect expression!");
         }
+    }
+
+    private bool IsBracketBalanced(string expression)
+    {
+        var bracketCounter = 0;
+        foreach (var symbol in expression)
+        {
+            if (symbol == '(')
+            {
+                ++bracketCounter;
+            }
+
+            if (symbol == ')')
+            {
+                --bracketCounter;
+            }
+
+            if (bracketCounter < 0)
+            {
+                return false;
+            }
+        }
+
+        return bracketCounter == 0;
     }
 
     public double Calculate()
