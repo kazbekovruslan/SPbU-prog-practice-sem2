@@ -4,12 +4,12 @@ public class UniqueList : List
 {
     private bool Contains(int value)
     {
-        if (head == null)
+        if (Head == null)
         {
             return false;
         }
 
-        Node? currentNode = head;
+        Node? currentNode = Head;
         while (currentNode != null)
         {
             if (currentNode.Value == value)
@@ -29,12 +29,12 @@ public class UniqueList : List
             throw new ElementAlreadyExistsException("This element already exists!");
         }
 
-        head = new Node(value, head);
+        Head = new Node(value, Head);
     }
 
     public override void ReplaceElementByIndex(int value, int index)
     {
-        if (head == null)
+        if (Head == null)
         {
             throw new ArgumentNullException("List is empty!");
         }
@@ -44,7 +44,7 @@ public class UniqueList : List
             throw new ElementAlreadyExistsException("This element already exists!");
         }
 
-        Node? currentNode = head;
+        Node? currentNode = Head;
         var currentIndex = 0;
 
         while (currentIndex != index && currentNode != null)

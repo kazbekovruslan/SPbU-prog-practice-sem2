@@ -2,11 +2,11 @@
 
 public class List
 {
-    protected Node? head;
+    protected Node? Head;
 
     public List()
     {
-        this.head = null;
+        this.Head = null;
     }
 
     protected class Node
@@ -24,17 +24,17 @@ public class List
 
     public virtual void Add(int value)
     {
-        head = new Node(value, head);
+        Head = new Node(value, Head);
     }
 
     public void Remove(int value)
     {
-        if (head == null)
+        if (Head == null)
         {
             throw new ArgumentNullException("List is empty!");
         }
 
-        Node currentNode = head;
+        Node currentNode = Head;
         Node? previousNode = null;
         while (currentNode.Value != value && currentNode.Next != null)
         {
@@ -49,7 +49,7 @@ public class List
 
         if (previousNode == null)
         {
-            head = currentNode.Next;
+            Head = currentNode.Next;
         }
         else
         {
@@ -59,12 +59,12 @@ public class List
 
     public virtual void ReplaceElementByIndex(int value, int index)
     {
-        if (head == null)
+        if (Head == null)
         {
             throw new ArgumentNullException("List is empty!");
         }
 
-        Node? currentNode = head;
+        Node? currentNode = Head;
         var currentIndex = 0;
 
         while (currentIndex != index && currentNode != null)
@@ -81,19 +81,24 @@ public class List
 
     public void Print()
     {
-        if (head == null)
+        if (Head == null)
         {
             throw new ArgumentNullException("List is empty!");
         }
 
         System.Console.Write("List: ");
 
-        Node? currentNode = head;
+        Node? currentNode = Head;
         while (currentNode != null)
         {
             System.Console.Write($"{currentNode.Value} ");
             currentNode = currentNode.Next;
         }
         System.Console.WriteLine();
+    }
+
+    public bool IsEmpty()
+    {
+        return Head == null;
     }
 }
