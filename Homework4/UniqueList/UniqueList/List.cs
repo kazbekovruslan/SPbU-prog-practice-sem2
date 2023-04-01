@@ -1,6 +1,6 @@
 ﻿namespace Lists;
 
-class List
+public class List
 {
     protected Node? head;
 

@@ -1,6 +1,6 @@
 namespace Lists;
 
-class UniqueList : List
+public class UniqueList : List
 {
     private bool Contains(int value)
     {
