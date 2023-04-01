@@ -34,6 +34,7 @@ public class ParseTree
 
         ITree BuildSubTrees()
         {
+            // lack of parts
             if (++index >= splittedExpression.Length)
             {
                 throw new ArgumentException("Incorrect expression!");
@@ -61,10 +62,12 @@ public class ParseTree
         }
 
         root = BuildSubTrees();
-        // if (index != splittedExpression.Length - 1)
-        // {
-        //     throw new ArgumentException("Incorrect expression!");
-        // }
+
+        // too many parts
+        if (index != splittedExpression.Length - 1)
+        {
+            throw new ArgumentException("Incorrect expression!");
+        }
     }
 
     public double Calculate()
