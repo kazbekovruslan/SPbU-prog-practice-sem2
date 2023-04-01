@@ -1,5 +1,8 @@
 namespace ParseTree;
 
+/// <summary>
+/// Class that represents parse tree data structure.
+/// </summary>
 public class ParseTree
 {
     public ParseTree(string? expression)
@@ -99,11 +102,18 @@ public class ParseTree
         return bracketCounter == 0;
     }
 
+    /// <summary>
+    /// Calculates expression from parseTree.
+    /// </summary>
+    /// <returns></returns>
     public double Calculate()
     {
         return root!.Calculate();
     }
 
+    /// <summary>
+    /// Prints expression from parseTree.
+    /// </summary>
     public void Print()
     {
         root!.Print();
