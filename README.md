@@ -1,5 +1,25 @@
 # SPbU-prog-practice-sem2
  Homeworks and tests for 2 semester of SPbU C# course
+ 
+
+## Homework tasks solutions:
+
+#### Homework 1:
+- [Insertion sort and BWT](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework1/Homework1)
+
+#### Homework 2:
+- [Stack calculator (with tests from Homework 3)) and Trie](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework2/Homework2)
+
+#### Homework 3:
+- [LZW compression algorithm](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework3/Homework3)
+
+#### Homework 4:
+- [Unique list and Parse Tree](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework4/Homework4)
+
+#### Homework 5:
+- [Routers]()
+ 
+ 
 ## Homework tasks conditions:
 
 ### Homework 1:
