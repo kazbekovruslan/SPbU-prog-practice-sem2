@@ -29,7 +29,7 @@ public static class TopologyBuilder
     /// </summary>
     /// <param name="input">Input topology.</param>
     /// <returns>Maximum speed topology.</returns>
-    public static string FindMaximumSpeedTopology(string input)
+    public static string FindMaximumSpeedTopology(string? input)
     {
         if (input == null)
         {
