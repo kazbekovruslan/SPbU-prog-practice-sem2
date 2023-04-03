@@ -3,9 +3,12 @@ namespace Routers;
 using System.Collections.Generic;
 using System.Text;
 
+/// <summary>
+/// Utility for building topology of network based on minimum spanning tree.
+/// </summary>
 public static class TopologyBuilder
 {
-    public class GraphEdge
+    private class GraphEdge
     {
         public int FirstVertex;
 
@@ -21,6 +24,11 @@ public static class TopologyBuilder
         }
     }
 
+    /// <summary>
+    /// Finds minimum spanning tree - maximum speed topology - in input topology.
+    /// </summary>
+    /// <param name="input">Input topology.</param>
+    /// <returns>Maximum speed topology.</returns>
     public static string FindMaximumSpeedTopology(string input)
     {
         if (input == null)
