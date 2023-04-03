@@ -17,7 +17,7 @@
 - [Unique list and Parse Tree](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework4/Homework4)
 
 #### Homework 5:
-- [Routers]()
+- [Routers](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework5)
  
  
 ## Homework tasks conditions:
