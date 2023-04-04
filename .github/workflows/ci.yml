@@ -11,10 +11,10 @@ jobs:
           dotnet-version: '7.0.x'
 
       - name: Build
-        run: for file in $(find . -name "*.sln"); do dotnet build $file; done
+        run: $files = Get-ChildItem -Recurse -Filter '*.sln'; foreach ($file in $files) {dotnet build $file.FullName}
 
       - name: Run Tests
-        run: for file in $(find . -name "*.sln"); do dotnet test $file; done
+        run: $files = Get-ChildItem -Recurse -Filter '*.sln'; foreach ($file in $files) {dotnet test $file.FullName}
 
   build-Ubuntu:
     runs-on: ubuntu-latest
