@@ -1,0 +1,32 @@
+name: C# build CI
+on: [push, pull_request]
+jobs:
+  build-Windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Build
+        run: for file in $(find . -name "*.sln"); do dotnet build $file; done
+
+      - name: Run Tests
+        run: for file in $(find . -name "*.sln"); do dotnet test $file; done
+
+  build-Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Build
+        run: for f in $(find . -name "*sln"); do dotnet build $f; done
+
+      - name: Run Tests
+        run: for f in $(find . -name "*sln"); do dotnet test $f; done
