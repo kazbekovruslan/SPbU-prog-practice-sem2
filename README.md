@@ -18,6 +18,9 @@
 
 #### Homework 5:
 - [Routers](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework5)
+
+#### Homework 6:
+- [Map, Filter, Fold and Game](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework6)
  
  
 ## Homework tasks conditions:
