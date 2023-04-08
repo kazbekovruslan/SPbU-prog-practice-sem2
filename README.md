@@ -2,7 +2,6 @@
 ![CI](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/actions/workflows/ci.yml/badge.svg)
  Homeworks and tests for 2 semester of SPbU C# course
  
-https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/main/.github/workflows
 ## Homework tasks solutions:
 
 #### Homework 1:
