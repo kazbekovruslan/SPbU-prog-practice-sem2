@@ -67,8 +67,6 @@ class Program
     //and returns decoded original string
     static string Decoder(string decodingString, int positionOfStringEnd)
     {
-        StringBuilder resultString = new StringBuilder();
-
         var decodingStringSymbolFrequences = new int[AlphabetSize];
         for (var i = 0; i < decodingString.Length; ++i)
         {
@@ -89,11 +87,12 @@ class Program
             ++decodingStringSymbolFrequences[decodingString[i]];
         }
 
-        int j = nextSymbols[positionOfStringEnd];
+        int nextSymbol = nextSymbols[positionOfStringEnd];
+        var resultString = new StringBuilder();
         for (var i = 0; i < decodingString.Length; ++i)
         {
-            resultString.Append(decodingString[j]);
-            j = nextSymbols[j];
+            resultString.Append(decodingString[nextSymbol]);
+            nextSymbol = nextSymbols[nextSymbol];
         }
 
         return resultString.ToString();
@@ -106,7 +105,7 @@ class Program
 
         int typeOfOperation = 0;
 
-        while (!int.TryParse(Console.ReadLine(), out typeOfOperation) || (typeOfOperation < 1 || typeOfOperation > 2))
+        while (!int.TryParse(Console.ReadLine(), out typeOfOperation) || typeOfOperation < 1 || typeOfOperation > 2)
         {
             Console.WriteLine("Incorrect input! You can enter only 1 or 2. Try again!");
             Console.WriteLine("Enter 1 to encode, 2 to decode: ");
@@ -114,12 +113,12 @@ class Program
 
         switch (typeOfOperation)
         {
-            case (1):
+            case 1:
                 {
                     Console.Write("Enter the string you want to encode: ");
                     string? encodingString = Console.ReadLine();
 
-                    while (encodingString == null || encodingString == "")
+                    while (string.IsNullOrEmpty(encodingString))
                     {
                         Console.WriteLine("Incorrect input! Try again.");
                         Console.Write("Enter the string you want to encode: ");
@@ -137,12 +136,12 @@ class Program
                     Console.ReadKey();
                     break;
                 }
-            case (2):
+            case 2:
                 {
                     Console.Write("Enter the string you want to decode: ");
-                    string? decodingString = Console.ReadLine(); ;
+                    string? decodingString = Console.ReadLine();
 
-                    while (decodingString == null || decodingString == "")
+                    while (string.IsNullOrEmpty(decodingString))
                     {
                         Console.WriteLine("Incorrect input! Try again.");
                         Console.Write("Enter the string you want to encode: ");
