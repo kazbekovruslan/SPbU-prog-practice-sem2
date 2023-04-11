@@ -147,7 +147,7 @@ public class Game
 
     private static void UpdateCursor(int newPositionX, int newPositionY)
     {
-        // Console.Write(" ");
+        Console.Write(" ");
         Console.SetCursorPosition(newPositionX, newPositionY);
         Console.Write("@");
         Console.SetCursorPosition(newPositionX, newPositionY);

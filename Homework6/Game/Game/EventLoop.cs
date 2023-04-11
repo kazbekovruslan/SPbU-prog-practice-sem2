@@ -12,22 +12,26 @@ public class EventLoop
         var IsRunning = true;
         while (IsRunning)
         {
-            var key = Console.ReadKey();
+            var key = Console.ReadKey(true);
             switch (key.Key)
             {
                 case ConsoleKey.Escape:
                     IsRunning = false;
                     break;
                 case ConsoleKey.LeftArrow:
+                case ConsoleKey.A:
                     LeftHandler(this, EventArgs.Empty);
                     break;
                 case ConsoleKey.RightArrow:
+                case ConsoleKey.D:
                     RightHandler(this, EventArgs.Empty);
                     break;
                 case ConsoleKey.UpArrow:
+                case ConsoleKey.W:
                     UpHandler(this, EventArgs.Empty);
                     break;
                 case ConsoleKey.DownArrow:
+                case ConsoleKey.S:
                     DownHandler(this, EventArgs.Empty);
                     break;
             }
