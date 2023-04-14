@@ -170,7 +170,7 @@ partial class GameForm
         this.button9.UseVisualStyleBackColor = true;
         this.button9.Click += new System.EventHandler(this.OnButtonClick);
         // 
-        // Form1
+        // TicTacToeForm
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -180,6 +180,7 @@ partial class GameForm
         this.Text = "TicTacToe";
         this.tableLayoutPanel1.ResumeLayout(false);
         this.tableLayoutPanel1.PerformLayout();
+        MinimumSize = new Size(400, 400);
         this.ResumeLayout(false);
 
     }
