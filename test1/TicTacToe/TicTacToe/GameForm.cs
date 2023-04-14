@@ -39,6 +39,8 @@ public partial class GameForm : Form
         {
             switch (Game.MakeMove(numberOfButton))
             {
+                case 0:
+                    throw new Exception();
                 case 1:
                     button.Text = "X";
                     break;

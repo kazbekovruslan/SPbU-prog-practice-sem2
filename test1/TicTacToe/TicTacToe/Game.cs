@@ -99,7 +99,6 @@ class Game
             case States.WinO:
                 return 6;
         }
-
-        return 3;
+        return 0;
     }
 }
