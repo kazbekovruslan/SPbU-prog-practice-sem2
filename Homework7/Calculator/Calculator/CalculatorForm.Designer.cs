@@ -299,6 +299,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
+            MinimumSize = new Size(400, 450);
 
         }
 
