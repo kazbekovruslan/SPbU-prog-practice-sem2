@@ -97,7 +97,9 @@
             this.display.Location = new System.Drawing.Point(3, 0);
             this.display.Name = "display";
             this.display.Size = new System.Drawing.Size(376, 75);
+            this.display.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.display.TabIndex = 0;
+            // this.display.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             // 
             // button1
             // 
@@ -230,7 +232,7 @@
             this.buttonAddition.TabIndex = 12;
             this.buttonAddition.Text = "+";
             this.buttonAddition.UseVisualStyleBackColor = true;
-            this.buttonAddition.Click += new System.EventHandler(this.OnButtonAdditionClick);
+            this.buttonAddition.Click += new System.EventHandler(this.OnButtonOperationClick);
             // 
             // buttonSubtraction
             // 
@@ -241,7 +243,7 @@
             this.buttonSubtraction.TabIndex = 13;
             this.buttonSubtraction.Text = "-";
             this.buttonSubtraction.UseVisualStyleBackColor = true;
-            this.buttonSubtraction.Click += new System.EventHandler(this.OnButtonSubtractionClick);
+            this.buttonSubtraction.Click += new System.EventHandler(this.OnButtonOperationClick);
             // 
             // buttonMultiplication
             // 
@@ -252,7 +254,7 @@
             this.buttonMultiplication.TabIndex = 14;
             this.buttonMultiplication.Text = "×";
             this.buttonMultiplication.UseVisualStyleBackColor = true;
-            this.buttonMultiplication.Click += new System.EventHandler(this.OnButtonMultiplicationClick);
+            this.buttonMultiplication.Click += new System.EventHandler(this.OnButtonOperationClick);
             // 
             // buttonDivision
             // 
@@ -263,7 +265,7 @@
             this.buttonDivision.TabIndex = 15;
             this.buttonDivision.Text = "÷";
             this.buttonDivision.UseVisualStyleBackColor = true;
-            this.buttonDivision.Click += new System.EventHandler(this.OnButtonDivisionClick);
+            this.buttonDivision.Click += new System.EventHandler(this.OnButtonOperationClick);
             // 
             // buttonSign
             // 
@@ -274,7 +276,7 @@
             this.buttonSign.TabIndex = 16;
             this.buttonSign.Text = "+/-";
             this.buttonSign.UseVisualStyleBackColor = true;
-            this.buttonSign.Click += new System.EventHandler(this.OnButtonSignClick);
+            this.buttonSign.Click += new System.EventHandler(this.OnButtonOperationClick);
             // 
             // buttonClear
             // 
