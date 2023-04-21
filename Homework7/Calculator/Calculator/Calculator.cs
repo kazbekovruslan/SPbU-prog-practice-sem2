@@ -24,7 +24,7 @@ internal class Calculator : INotifyPropertyChanged
         {
             display = value;
 
-            NotifyPropertyChanged();
+            OnPropertyChanged();
         }
     }
 
@@ -40,11 +40,11 @@ internal class Calculator : INotifyPropertyChanged
         {
             historyDisplay = value;
 
-            NotifyPropertyChanged();
+            OnPropertyChanged();
         }
     }
 
-    private void NotifyPropertyChanged(string propertyName = "")
+    private void OnPropertyChanged(string propertyName = "")
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     private bool IsNeedToClearHistoryDisplay = false;
