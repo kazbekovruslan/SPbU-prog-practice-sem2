@@ -2,6 +2,9 @@ namespace Calculator;
 
 using System.ComponentModel;
 
+/// <summary>
+/// Class that represents functional of the calculator.
+/// </summary>
 internal class Calculator : INotifyPropertyChanged
 {
     private const string ErrorMessage = "Error!";
@@ -9,6 +12,10 @@ internal class Calculator : INotifyPropertyChanged
     private string display = "0";
     private string historyDisplay = "";
 
+    /// <summary>
+    /// Property for displaying data on the display.
+    /// </summary>
+    /// <value></value>
     public string Display
     {
         get => this.display;
@@ -21,6 +28,10 @@ internal class Calculator : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// Property for displaying data on the history display.
+    /// </summary>
+    /// <value></value>
     public string HistoryDisplay
     {
         get => this.historyDisplay;
@@ -33,11 +44,12 @@ internal class Calculator : INotifyPropertyChanged
         }
     }
 
+    private void NotifyPropertyChanged(string propertyName = "")
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
     private bool IsNeedToClearHistoryDisplay = false;
     private bool IsOperationFinished = false;
 
-    private void NotifyPropertyChanged(string propertyName = "")
-        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     private double resultOfCalculating = 0;
     private double temporaryResult = 0;
@@ -53,8 +65,15 @@ internal class Calculator : INotifyPropertyChanged
 
     private States currentState = States.IsOperand;
 
+    /// <summary>
+    /// Event that works for binding controls and properties.
+    /// </summary>
     public event PropertyChangedEventHandler? PropertyChanged;
 
+    /// <summary>
+    /// Adds digit to the number in the calculator.
+    /// </summary>
+    /// <param name="inputDigit">Added digit.</param>
     public void AddDigit(char inputDigit)
     {
         if (!char.IsDigit(inputDigit))
@@ -90,6 +109,10 @@ internal class Calculator : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// Add operation to the calculator.
+    /// </summary>
+    /// <param name="operation"></param>
     public void AddOperation(string operation)
     {
         if (!operations.Contains(operation))
@@ -163,6 +186,9 @@ internal class Calculator : INotifyPropertyChanged
         return Math.Abs(number) < delta;
     }
 
+    /// <summary>
+    /// Calculates result number in the calculator.
+    /// </summary>
     public void Calculate()
     {
         switch (currentState)
@@ -224,6 +250,9 @@ internal class Calculator : INotifyPropertyChanged
         }
     }
 
+    /// <summary>
+    /// Clears all data in the calculator.
+    /// </summary>
     public void Clear()
     {
         currentState = States.IsOperand;

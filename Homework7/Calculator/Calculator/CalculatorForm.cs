@@ -14,6 +14,9 @@ namespace Calculator
     {
         private Calculator calculator = new();
 
+        /// <summary>
+        /// Initiziales compnonents in the form and adds bindings to the displays.
+        /// </summary>
         public CalculatorForm()
         {
             InitializeComponent();
