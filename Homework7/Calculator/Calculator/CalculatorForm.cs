@@ -18,9 +18,8 @@ namespace Calculator
         {
             InitializeComponent();
 
-            var resultBinding = new Binding("Text", calculator, "Display", true, DataSourceUpdateMode.OnPropertyChanged);
-
-            display.DataBindings.Add(resultBinding);
+            display.DataBindings.Add("Text", calculator, "Display", true, DataSourceUpdateMode.OnPropertyChanged);
+            historyDisplay.DataBindings.Add("Text", calculator, "HistoryDisplay", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void OnButtonNumberClick(object sender, EventArgs e)
@@ -42,10 +41,5 @@ namespace Calculator
 
             calculator.AddOperation(button.Text);
         }
-
-        // private void OnButtonSignClick(object sender, EventArgs e)
-        // {
-        //     calculator.ChangeSign();
-        // }
     }
 }

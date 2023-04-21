@@ -4,9 +4,10 @@ using System.ComponentModel;
 
 internal class Calculator : INotifyPropertyChanged
 {
-    private string display = "0";
-
     private const string ErrorMessage = "Error!";
+
+    private string display = "0";
+    private string historyDisplay = "";
 
     public string Display
     {
@@ -19,6 +20,24 @@ internal class Calculator : INotifyPropertyChanged
             NotifyPropertyChanged();
         }
     }
+
+    public string HistoryDisplay
+    {
+        get => this.historyDisplay;
+
+        private set
+        {
+            historyDisplay = value;
+
+            NotifyPropertyChanged();
+        }
+    }
+
+    private bool IsNeedToClearHistoryDisplay = false;
+    private bool IsOperationFinished = false;
+
+    private void NotifyPropertyChanged(string propertyName = "")
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     private double resultOfCalculating = 0;
     private double temporaryResult = 0;
@@ -36,9 +55,6 @@ internal class Calculator : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private void NotifyPropertyChanged(string propertyName = "")
-        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     public void AddDigit(char inputDigit)
     {
         if (!char.IsDigit(inputDigit))
@@ -46,28 +62,30 @@ internal class Calculator : INotifyPropertyChanged
             Display = ErrorMessage;
         }
 
+        ClearHistoryDisplay();
+
         switch (currentState)
         {
-            case (States.IsOperand):
-                if (Display.Equals("0") || Display.Equals(ErrorMessage)) // один или несколько errormessag-ей?
+            case States.IsOperand:
+                if (IsOperationFinished)
                 {
-                    Display = inputDigit.ToString();
-                    resultOfCalculating = double.Parse(Display);
+                    Clear();
                 }
-                else
+                if (!Display.Equals(ErrorMessage))
                 {
-                    Display += inputDigit;
-                    resultOfCalculating = double.Parse(Display);
+                    resultOfCalculating = Math.Sign(resultOfCalculating) >= 0
+                        ? resultOfCalculating * 10 + Char.GetNumericValue(inputDigit)
+                        : resultOfCalculating * 10 - Char.GetNumericValue(inputDigit);
+                    Display = resultOfCalculating.ToString();
+                    currentState = States.IsOperand;
+                    IsOperationFinished = false;
                 }
-
-                currentState = States.IsOperand;
                 break;
-            case (States.IsOperation):
+            case States.IsOperation:
                 temporaryResult = resultOfCalculating;
-                resultOfCalculating = double.Parse(inputDigit.ToString());
+                resultOfCalculating = char.GetNumericValue(inputDigit);
                 Display = inputDigit.ToString();
                 currentState = States.IsOperand;
-
                 break;
         }
     }
@@ -78,6 +96,8 @@ internal class Calculator : INotifyPropertyChanged
         {
             Display = ErrorMessage;
         }
+
+        ClearHistoryDisplay();
 
         switch (currentState)
         {
@@ -95,19 +115,18 @@ internal class Calculator : INotifyPropertyChanged
                     currentOperation = operation;
                     currentState = States.IsOperation;
                     temporaryResult = resultOfCalculating;
+                    HistoryDisplay += temporaryResult + " " + operation;
                 }
                 else
                 {
                     try
                     {
-                        resultOfCalculating = Math.Round(Evaluate(), 3);
-                        Display = resultOfCalculating.ToString();
+                        CalculateAndPrint();
                     }
                     catch (Exception ex) when (ex is DivideByZeroException ||
                                                ex is ArgumentException)
                     {
                         Clear();
-                        // Display = ex.Message;
                         Display = ErrorMessage;
                         return;
                     }
@@ -120,6 +139,7 @@ internal class Calculator : INotifyPropertyChanged
 
             case States.IsOperation:
                 currentOperation = operation;
+                HistoryDisplay = temporaryResult + " " + operation;
                 break;
         }
     }
@@ -131,7 +151,7 @@ internal class Calculator : INotifyPropertyChanged
             "+" => temporaryResult + resultOfCalculating,
             "-" => temporaryResult - resultOfCalculating,
             "×" => temporaryResult * resultOfCalculating,
-            "÷" => IsDoubleNumberEqualsToZero(temporaryResult)
+            "÷" => IsDoubleNumberEqualsToZero(resultOfCalculating)
                     ? throw new DivideByZeroException("Division by zero is prohibited!")
                     : temporaryResult / resultOfCalculating,
             _ => throw new ArgumentException("Unknown operation!")
@@ -143,21 +163,6 @@ internal class Calculator : INotifyPropertyChanged
         return Math.Abs(number) < delta;
     }
 
-    // public void ChangeSign()
-    // {
-    //     if (!Display.Equals("0") && !Display.Equals(ErrorMessage))
-    //     {
-    //         if (Display[0] == '-')
-    //         {
-    //             Display = Display.Substring(1);
-    //         }
-    //         else
-    //         {
-    //             Display = "-" + Display;
-    //         }
-    //     }
-    // }
-
     public void Calculate()
     {
         switch (currentState)
@@ -167,14 +172,12 @@ internal class Calculator : INotifyPropertyChanged
                 {
                     try
                     {
-                        resultOfCalculating = Evaluate();
-                        Display = resultOfCalculating.ToString();
+                        CalculateAndPrint();
                     }
                     catch (Exception ex) when (ex is DivideByZeroException ||
                                                ex is ArgumentException)
                     {
                         Clear();
-                        // Display = ex.Message;
                         Display = ErrorMessage;
                         return;
                     }
@@ -186,14 +189,12 @@ internal class Calculator : INotifyPropertyChanged
             case States.IsOperation:
                 try
                 {
-                    resultOfCalculating = Evaluate();
-                    Display = resultOfCalculating.ToString();
+                    CalculateAndPrint();
                 }
                 catch (Exception ex) when (ex is DivideByZeroException ||
-                                               ex is ArgumentException)
+                                           ex is ArgumentException)
                 {
                     Clear();
-                    // Display = ex.Message;
                     Display = ErrorMessage;
                     return;
                 }
@@ -201,12 +202,34 @@ internal class Calculator : INotifyPropertyChanged
         }
     }
 
+    private void CalculateAndPrint()
+    {
+        HistoryDisplay += " " + resultOfCalculating + " =";
+        IsNeedToClearHistoryDisplay = true;
+        resultOfCalculating = Math.Round(Evaluate(), 3);
+        if (resultOfCalculating == -0)
+        {
+            resultOfCalculating = 0;
+        }
+        Display = resultOfCalculating.ToString();
+        IsOperationFinished = true;
+    }
+
+    private void ClearHistoryDisplay()
+    {
+        if (IsNeedToClearHistoryDisplay)
+        {
+            HistoryDisplay = "";
+            IsNeedToClearHistoryDisplay = false;
+        }
+    }
+
     public void Clear()
     {
         currentState = States.IsOperand;
         Display = "0";
+        HistoryDisplay = "";
         resultOfCalculating = 0;
         temporaryResult = 0;
     }
-
 }

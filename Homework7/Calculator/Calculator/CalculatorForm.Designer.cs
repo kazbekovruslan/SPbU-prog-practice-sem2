@@ -48,6 +48,7 @@
             this.buttonDivision = new System.Windows.Forms.Button();
             this.buttonSign = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
+            this.historyDisplay = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,16 +77,18 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonDivision, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonSign, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonClear, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.historyDisplay, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(382, 453);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -97,9 +100,23 @@
             this.display.Location = new System.Drawing.Point(3, 0);
             this.display.Name = "display";
             this.display.Size = new System.Drawing.Size(376, 75);
-            this.display.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.display.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.display.TabIndex = 0;
+            this.display.TextAlign = ContentAlignment.BottomRight;
             // this.display.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            // 
+            // historyDisplay
+            // 
+            this.historyDisplay.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.historyDisplay, 4);
+            this.historyDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.historyDisplay.Location = new System.Drawing.Point(3, 0);
+            this.historyDisplay.Name = "historyDisplay";
+            this.historyDisplay.Size = new System.Drawing.Size(376, 44);
+            this.historyDisplay.TabIndex = 18;
+            this.historyDisplay.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.historyDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.historyDisplay.TextAlign = ContentAlignment.BottomRight;
             // 
             // button1
             // 
@@ -326,6 +343,7 @@
         private System.Windows.Forms.Button buttonDivision;
         private System.Windows.Forms.Button buttonSign;
         private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.Label historyDisplay;
     }
 }
 
