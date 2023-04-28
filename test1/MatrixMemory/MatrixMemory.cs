@@ -4,7 +4,17 @@ class MatrixMemoryGame
 {
     private int AmountOfMarkedSquares = (new Random()).Next(2, 7);
 
-    public List<int> MarkedSquares = new List<int>();
+    private List<int> markedSquares = new List<int>();
+
+    public List<int> MarkedSquares
+    {
+        get => markedSquares;
+
+        private set
+        {
+            markedSquares = value;
+        }
+    }
 
     public void MakeStart()
     {
