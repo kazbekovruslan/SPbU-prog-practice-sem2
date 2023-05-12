@@ -13,7 +13,7 @@ public class StackCalculatorTests
     [TestCaseSource(nameof(StackCalculator))]
     public void CalculatorWithCorrectExpressionShouldReturnCorrectResult(StackCalculator stackCalculator)
     {
-        var expression = "15 3 + 2 * 3 /";
+        var expression = "15 3 +  2 * 3 /";
         var expected = 12F;
         var delta = 0.00001;
 

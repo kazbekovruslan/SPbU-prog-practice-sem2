@@ -77,8 +77,7 @@ public class StackCalculator
             throw new ArgumentException("Expression can't be empty!");
         }
 
-        var expressionElementsArray = expression.Split();
-        // пробелы, посмотреть перегрузки
+        var expressionElementsArray = expression.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var expressionElement in expressionElementsArray)
         {
