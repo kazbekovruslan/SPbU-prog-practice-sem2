@@ -55,6 +55,14 @@ public class StackCalculatorTests
     }
 
     [TestCaseSource(nameof(StackCalculator))]
+    public void CalculatorWithExpressionWithForbiddenOperationShouldThrowException(StackCalculator stackCalculator)
+    {
+        var expression = "1 2 + 3 %";
+
+        Assert.Throws<ArgumentException>(() => stackCalculator.EvaluateExpression(expression));
+    }
+
+    [TestCaseSource(nameof(StackCalculator))]
     public void CalculatorWithEmptyExpressionShouldThrowException(StackCalculator stackCalculator)
     {
         var expression = string.Empty;
