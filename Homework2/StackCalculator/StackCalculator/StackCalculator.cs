@@ -78,6 +78,7 @@ public class StackCalculator
         }
 
         var expressionElementsArray = expression.Split();
+        // пробелы, посмотреть перегрузки
 
         foreach (var expressionElement in expressionElementsArray)
         {
@@ -93,7 +94,7 @@ public class StackCalculator
                     secondElement = stack.Pop();
                     firstElement = stack.Pop();
                 }
-                catch
+                catch (InvalidOperationException)
                 {
                     throw new ArgumentException("Wrong expression: missing numbers!");
                 }
@@ -118,12 +119,12 @@ public class StackCalculator
         {
             answer = stack.Pop();
         }
-        catch
+        catch (InvalidOperationException)
         {
             throw new ArgumentException("Wrong expression: missing numbers!");
         }
 
-        if (!stack.IsEmpty())
+        if (!stack.IsEmpty)
         {
             throw new ArgumentException("Wrong expression: too many numbers!");
         }

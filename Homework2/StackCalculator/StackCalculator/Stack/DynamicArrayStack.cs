@@ -8,7 +8,6 @@ using System;
 public class DynamicArrayStack : IStack
 {
     private List<double> array;
-    private int count;
 
     public DynamicArrayStack()
     {
@@ -18,20 +17,22 @@ public class DynamicArrayStack : IStack
     /// <inheritdoc/>
     public void Push(double value)
     {
-        array.Insert(count++, value);
+        array.Add(value);
     }
 
     /// <inheritdoc/>
     public double Pop()
     {
-        if (IsEmpty())
+        if (IsEmpty)
         {
             throw new InvalidOperationException("Can't pop from empty stack!");
         }
-        return array.ElementAt(--count);
+        var poppedElement = array[array.Count - 1];
+        array.RemoveAt(array.Count - 1);
+        return poppedElement;
     }
 
     /// <inheritdoc/>
-    public bool IsEmpty()
-        => count == 0;
+    public bool IsEmpty
+        => array.Count == 0;
 }

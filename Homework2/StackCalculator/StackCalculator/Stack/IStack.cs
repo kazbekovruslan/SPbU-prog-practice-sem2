@@ -22,5 +22,5 @@ public interface IStack
     /// Checks stack for being empty.
     /// </summary>
     /// <returns>true - if stack is empty, false - if stack isn't empty.</returns>
-    public bool IsEmpty();
+    public bool IsEmpty { get; }
 }

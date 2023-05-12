@@ -21,7 +21,7 @@ public class LinkedListStack : IStack
     /// <inheritdoc/>
     public double Pop()
     {
-        if (IsEmpty())
+        if (IsEmpty)
         {
             throw new InvalidOperationException("Can't pop from empty stack!");
         }
@@ -31,6 +31,6 @@ public class LinkedListStack : IStack
     }
 
     /// <inheritdoc/>
-    public bool IsEmpty()
+    public bool IsEmpty
         => list.First == null;
 }
