@@ -141,6 +141,14 @@ class Trie
         foreach (var symbol in element)
         {
             --currentVertex.AmountOfWordsWithSamePrefix;
+
+            if (currentVertex.Next[symbol].AmountOfWordsWithSamePrefix == 1)
+            {
+                currentVertex.Next.Remove(symbol);
+                --Size;
+                return true;
+            }
+
             currentVertex = currentVertex.Next[symbol];
         }
 
