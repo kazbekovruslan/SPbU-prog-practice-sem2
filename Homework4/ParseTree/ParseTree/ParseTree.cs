@@ -17,14 +17,7 @@ public class ParseTree
             throw new ArgumentException("Expression can't be empty!");
         }
 
-        try
-        {
-            BuildTree(expression);
-        }
-        catch (ArgumentException)
-        {
-            throw;
-        }
+        BuildTree(expression);
     }
 
     private ITree? root;
@@ -40,7 +33,7 @@ public class ParseTree
 
         var index = -1;
 
-        ITree BuildSubTrees()
+        ITree BuildSubtrees()
         {
             // lack of parts
             if (++index >= splittedExpression.Length)
@@ -63,13 +56,13 @@ public class ParseTree
                 _ => throw new ArgumentException("Incorrect expression!")
             };
 
-            newSubTree.LeftChild = BuildSubTrees();
-            newSubTree.RightChild = BuildSubTrees();
+            newSubTree.LeftChild = BuildSubtrees();
+            newSubTree.RightChild = BuildSubtrees();
 
             return newSubTree;
         }
 
-        root = BuildSubTrees();
+        root = BuildSubtrees();
 
         // too many parts
         if (index != splittedExpression.Length - 1)
@@ -87,8 +80,7 @@ public class ParseTree
             {
                 ++bracketCounter;
             }
-
-            if (symbol == ')')
+            else if (symbol == ')')
             {
                 --bracketCounter;
             }

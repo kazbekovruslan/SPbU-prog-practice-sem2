@@ -7,8 +7,9 @@ public class ParseTreeTests
     [Test]
     public void CalculatingWithRightExpressionShouldOutputRightAnswer()
     {
+        var almostZero = 0.001F;
         var parseTree = new ParseTree("(* (+ 1 1) 2)");
-        Assert.That(Math.Abs(parseTree.Calculate()) - 4 < 0.001);
+        Assert.That(Math.Abs(parseTree.Calculate()) - 4 < almostZero);
     }
 
     [Test]

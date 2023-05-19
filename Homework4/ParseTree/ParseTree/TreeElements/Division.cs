@@ -10,7 +10,8 @@ public class Division : Operator
     /// </summary>
     public override double Calculate()
     {
-        if (Math.Abs(RightChild!.Calculate()) < 0.0001)
+        var almostZero = 0.001;
+        if (Math.Abs(RightChild!.Calculate()) < almostZero)
         {
             throw new DivideByZeroException("You can't divide by zero!");
         }
