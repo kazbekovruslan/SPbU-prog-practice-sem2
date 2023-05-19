@@ -1,9 +1,17 @@
 namespace Archiever;
 
+/// <summary>
+/// Class representing archiver. (it is archiever everywhere, but correctly archiver :) )
+/// </summary>
 public class Archiever
 {
     private const int maxAvailableValueInByte = 255;
 
+    /// <summary>
+    /// Method for compressing input byte array.
+    /// </summary>
+    /// <param name="inputByteArray">Byte array for compressing.</param>
+    /// <returns>Compressed byte array.</returns>
     public (byte[], float compressRatio) Compress(byte[]? inputByteArray)
     {
         if (inputByteArray == null)
@@ -62,6 +70,11 @@ public class Archiever
     }
 
 
+    /// <summary>
+    /// Method for decompressing input byte array.
+    /// </summary>
+    /// <param name="inputByteArray">Byte array for decompressing.</param>
+    /// <returns>Decompressed byte array.</returns>
     public byte[] Decompress(byte[]? inputByteArray)
     {
         if (inputByteArray == null)
