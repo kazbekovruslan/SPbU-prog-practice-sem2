@@ -7,11 +7,6 @@ public class UniqueList : List
 {
     private bool Contains(int value)
     {
-        if (Head == null)
-        {
-            return false;
-        }
-
         Node? currentNode = Head;
         while (currentNode != null)
         {
