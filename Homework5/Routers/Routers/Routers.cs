@@ -41,7 +41,7 @@ public static class TopologyBuilder
             throw new ArgumentException("Topology can't be empty!");
         }
 
-        var (graphEdges, vertexesNumber) = ParseTopology(input);
+        (List<GraphEdge> graphEdges, int vertexesNumber) = ParseTopology(input);
 
         var connectedVertexes = new HashSet<int>() { graphEdges[0].FirstVertex };
 
@@ -49,9 +49,9 @@ public static class TopologyBuilder
 
         while (connectedVertexes.Count < vertexesNumber)
         {
-            var maximumWeightEdge = GetMaximumWeigthEdge(graphEdges, connectedVertexes);
+            GraphEdge? maximumWeightEdge = GetMaximumWeigthEdge(graphEdges, connectedVertexes);
 
-            if (maximumWeightEdge.Weight == int.MinValue)
+            if (maximumWeightEdge == null)
             {
                 throw new ArgumentException("Not all routers are reachable!");
             }
@@ -72,8 +72,13 @@ public static class TopologyBuilder
 
         foreach (var line in topology.Split("\n"))
         {
-            var fromVertex = line.Split(":")[0];
-            var toVertexes = line.Split(":")[1].Split(",");
+            var splittedLine = line.Split(":");
+            if (splittedLine.Length != 2)
+            {
+                throw new ArgumentException("Incorrect topology!");
+            }
+            var fromVertex = splittedLine[0];
+            var toVertexes = splittedLine[1].Split(",");
 
             if (!int.TryParse(fromVertex, out var firstVertex))
             {
@@ -84,7 +89,8 @@ public static class TopologyBuilder
 
             foreach (var incidentVertex in toVertexes)
             {
-                var vertex = incidentVertex.Split("(")[0];
+                var splittedIncidentVertex = incidentVertex.Split("(");
+                var vertex = splittedIncidentVertex[0];
                 if (!int.TryParse(vertex, out var secondVertex))
                 {
                     throw new ArgumentException("Incorrect topology");
@@ -92,10 +98,11 @@ public static class TopologyBuilder
 
                 vertexes.Add(secondVertex);
 
-                if (!int.TryParse(incidentVertex.Split("(")[1].Split(")")[0], out var weight))
+                if (!int.TryParse(splittedIncidentVertex[1].Split(")")[0], out var weight) || weight <= 0)
                 {
                     throw new ArgumentException("Incorrect topology");
                 }
+
 
                 parsedTopology.Add(new GraphEdge(firstVertex, secondVertex, weight));
             }
@@ -104,17 +111,19 @@ public static class TopologyBuilder
         return (parsedTopology, vertexes.Count);
     }
 
-    private static GraphEdge GetMaximumWeigthEdge(List<GraphEdge> graphEdges, HashSet<int> connectedVertexes)
+    private static GraphEdge? GetMaximumWeigthEdge(List<GraphEdge> graphEdges, HashSet<int> connectedVertexes)
     {
-        var maximumWeightEdge = new GraphEdge(-1, -1, int.MinValue);
+        GraphEdge? maximumWeightEdge = null;
+        var maximumWeight = int.MinValue;
 
         foreach (var edge in graphEdges)
         {
             if (connectedVertexes.Contains(edge.FirstVertex) ^ connectedVertexes.Contains(edge.SecondVertex))
             {
-                if (maximumWeightEdge.Weight < edge.Weight)
+                if (maximumWeight < edge.Weight)
                 {
                     maximumWeightEdge = edge;
+                    maximumWeight = edge.Weight;
                 }
             }
         }
