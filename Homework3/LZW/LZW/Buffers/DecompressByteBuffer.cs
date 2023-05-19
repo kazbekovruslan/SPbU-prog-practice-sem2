@@ -18,12 +18,17 @@ public static partial class LZWDecoder
         /// <summary>
         /// Current size of one new "byte".
         /// </summary>
-        public int CurrentByteSize = 9;
+        public int CurrentByteSize { get; set; } = 9;
+
+        /// <summary>
+        /// Size of one new "byte" at the start.
+        /// </summary>
+        public readonly int StartByteSize = 9;
 
         /// <summary>
         /// Current length of byte using for accumulation bits for byte.
         /// </summary>
-        public int CurrentLengthOfBuffer = 0;
+        public int CurrentLengthOfBuffer { get; set; } = 0;
 
         /// <summary>
         /// Size of 8-bit byte.

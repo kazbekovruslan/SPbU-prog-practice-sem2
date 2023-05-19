@@ -22,6 +22,11 @@ class Program
                 {
                     case "--c":
                         var pathToFile = args[0];
+                        if (!File.Exists(pathToFile))
+                        {
+                            Console.WriteLine("File doesn't exist!");
+                            return;
+                        }
                         var input = File.ReadAllBytes(pathToFile);
                         var output = LZWEncoder.Encode(input);
                         File.WriteAllBytes(pathToFile + ".zipped", output);
@@ -30,28 +35,21 @@ class Program
                         break;
                     case "--u":
                         var pathToZippedFile = args[0];
+                        if (!File.Exists(pathToZippedFile))
+                        {
+                            Console.WriteLine("File doesn't exist!");
+                            return;
+                        }
                         input = File.ReadAllBytes(pathToZippedFile);
-                        File.WriteAllBytes(pathToZippedFile.Replace(".zipped", ""), LZWDecoder.Decode(input));
+                        File.WriteAllBytes(pathToZippedFile.Substring(0, pathToZippedFile.Length - 7), LZWDecoder.Decode(input));
                         Console.WriteLine("Decompressing done!");
                         break;
                     default:
-                        Console.WriteLine("Incorrect function! There are only -c and -u!");
+                        Console.WriteLine("Incorrect function! There are only --c and --u!");
                         break;
                 }
             }
         }
-
-        // var pathToFile = "testFiles/more.mp4";
-        // var input = File.ReadAllBytes(pathToFile);
-        // var output = LZWEncoder.Encode(input);
-        // File.WriteAllBytes(pathToFile + ".zipped", output);
-        // Console.WriteLine("Compressing done!");
-        // Console.WriteLine($"Compression ratio: {(double)input.Length / output.Length}");
-
-        // var pathToZippedFile = "testFiles/more.mp4.zipped";
-        // input = File.ReadAllBytes(pathToZippedFile);
-        // File.WriteAllBytes(pathToZippedFile.Replace(".zipped", ""), LZWDecoder.Decode(input));
-        // Console.WriteLine("Decompressing done!");
 
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();

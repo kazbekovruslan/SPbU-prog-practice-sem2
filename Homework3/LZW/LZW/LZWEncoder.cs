@@ -10,6 +10,10 @@ public static partial class LZWEncoder
     /// </summary>
     public const int maximumAmountOfCodes = 65536;
 
+    private const int StartMaximumAmountOfCodes = 512;
+
+    private const int StartByteSize = 9;
+
     /// <summary>
     /// Encodes input array of bytes with LZW-algorithm.
     /// </summary>
@@ -29,11 +33,11 @@ public static partial class LZWEncoder
 
         var trie = new Trie();
         trie.InitTrie();
-        var buffer = new CompressByteBuffer();
+        CompressByteBuffer buffer = new();
 
         var stream = new List<byte>();
 
-        var currentmaximumAmountOfCodes = 512;
+        var currentMaximumAmountOfCodes = StartMaximumAmountOfCodes;
         for (var i = 0; i < input.Length; ++i)
         {
             var elementToAdd = new List<byte>();
@@ -52,15 +56,15 @@ public static partial class LZWEncoder
 
                 if (trie.Size == maximumAmountOfCodes)
                 {
-                    currentmaximumAmountOfCodes = 512;
-                    buffer.CurrentByteSize = 9;
+                    currentMaximumAmountOfCodes = StartMaximumAmountOfCodes;
+                    buffer.CurrentByteSize = StartByteSize;
                     trie = new();
                     trie.InitTrie();
                 }
 
-                if (trie.Size == currentmaximumAmountOfCodes)
+                if (trie.Size == currentMaximumAmountOfCodes)
                 {
-                    currentmaximumAmountOfCodes *= 2;
+                    currentMaximumAmountOfCodes *= 2;
                     ++buffer.CurrentByteSize;
                 }
 

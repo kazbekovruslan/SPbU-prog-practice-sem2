@@ -5,6 +5,10 @@ namespace LZW;
 /// </summary>
 public static partial class LZWDecoder
 {
+    private const int StartDictionarySize = 256;
+
+    private const int StartMaximumAmountOfCodesNumber = 512;
+
     /// <summary>
     /// Decodes input array of LZW-encoded bytes.
     /// </summary>
@@ -23,24 +27,24 @@ public static partial class LZWDecoder
         }
 
         var output = new List<byte>();
-        var dictionary = CreateAndInitDictionary();
-        var codes = GetCodes(input);
-        var dictionaryPointer = 256;
-        var dictionarySize = 256;
+        Dictionary<int, List<byte>> dictionary = CreateAndInitDictionary();
+        List<int> codes = GetCodes(input);
+        var dictionaryPointer = StartDictionarySize;
+        var dictionarySize = StartDictionarySize;
         var sequence = new List<byte>();
 
         for (var i = 0; i < codes.Count; ++i)
         {
             if (dictionarySize == LZWEncoder.maximumAmountOfCodes)
             {
-                dictionarySize = 256;
-                dictionaryPointer = 256;
+                dictionarySize = StartDictionarySize;
+                dictionaryPointer = StartDictionarySize;
                 dictionary = CreateAndInitDictionary();
             }
 
             if (dictionary.ContainsKey(codes[i]))
             {
-                if (dictionarySize != 256)
+                if (dictionarySize != StartDictionarySize)
                 {
                     while (dictionary.ContainsKey(dictionaryPointer))
                     {
@@ -71,16 +75,16 @@ public static partial class LZWDecoder
     {
         var buffer = new DecompressByteBuffer();
 
-        var dictionarySize = 256;
-        var currentMaximumAmountOfCodesNumber = 512;
+        var dictionarySize = StartDictionarySize;
+        var currentMaximumAmountOfCodesNumber = StartMaximumAmountOfCodesNumber;
 
         for (var i = 0; i < input.Length - 1; ++i)
         {
             if (dictionarySize == LZWEncoder.maximumAmountOfCodes)
             {
-                dictionarySize = 256;
-                currentMaximumAmountOfCodesNumber = 512;
-                buffer.CurrentByteSize = 9;
+                dictionarySize = StartDictionarySize;
+                currentMaximumAmountOfCodesNumber = StartMaximumAmountOfCodesNumber;
+                buffer.CurrentByteSize = buffer.StartByteSize;
             }
 
             if (dictionarySize == currentMaximumAmountOfCodesNumber)

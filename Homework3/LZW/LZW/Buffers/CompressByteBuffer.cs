@@ -17,12 +17,12 @@ public static partial class LZWEncoder
         /// <summary>
         /// Current size of one new "byte".
         /// </summary>
-        public int CurrentByteSize = 9;
+        public int CurrentByteSize { get; set; } = 9;
 
         /// <summary>
         /// Current length of byte using for accumulation bits for byte.
         /// </summary>
-        public int CurrentLengthOfBufferedByte = 0;
+        public int CurrentLengthOfBufferedByte { get; set; } = 0;
 
         private const int ByteSize = 8;
 
