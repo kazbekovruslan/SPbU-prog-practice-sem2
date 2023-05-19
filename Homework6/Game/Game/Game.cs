@@ -2,7 +2,7 @@ namespace Game;
 
 public class Game
 {
-    private char[,]? Map;
+    public char[,]? Map { get; private set; }
 
     private Person person;
 
@@ -14,6 +14,31 @@ public class Game
 
         this.person = new Person(startPositionX, startPositionY);
     }
+
+    public char[,] UnloadMap(string pathToMap)
+    {
+        var input = File.ReadAllLines(pathToMap);
+
+        var linesAmount = input.Length;
+        var columnsAmount = input[0].Length;
+
+        var loadedMap = new char[linesAmount, columnsAmount];
+        for (var i = 0; i < linesAmount; ++i)
+        {
+            if (string.IsNullOrEmpty(input[i]))
+            {
+                throw new ArgumentException("Map can't be null or empty!");
+            }
+
+            for (var j = 0; j < columnsAmount; ++j)
+            {
+                loadedMap[i, j] = input[i][j];
+            }
+        }
+
+        return loadedMap;
+    }
+
 
     private (int, int) LoadMap(string pathToMap)
     {
@@ -145,10 +170,12 @@ public class Game
         }
     }
 
-    private static void UpdateCursor(int newPositionX, int newPositionY)
+    private void UpdateCursor(int newPositionX, int newPositionY)
     {
+        Map![person.PositionY, person.PositionX] = ' ';
         Console.Write(" ");
         Console.SetCursorPosition(newPositionX, newPositionY);
+        Map[newPositionY, newPositionX] = '@';
         Console.Write("@");
         Console.SetCursorPosition(newPositionX, newPositionY);
     }
