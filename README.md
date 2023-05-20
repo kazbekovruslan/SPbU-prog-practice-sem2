@@ -23,7 +23,7 @@
 #### Homework 6:
 - [Map, Filter, Fold and Game](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework6)
 
-#### Homework 6:
+#### Homework 7:
 - [Calculator](https://github.com/kazbekovruslan/SPbU-prog-practice-sem2/tree/Homework7)
  
  
