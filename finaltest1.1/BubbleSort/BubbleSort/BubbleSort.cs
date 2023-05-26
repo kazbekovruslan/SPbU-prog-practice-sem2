@@ -8,13 +8,18 @@ using System.Collections.Generic;
 /// <typeparam name="T">Input type for bubble sort method.</typeparam>
 public static class BubbleSorter<T>
 {
-    static void Swap(List<T> list, int index1, int index2)
+    private static void Swap(List<T> list, int index1, int index2)
     {
         T temporaryElement = list[index1];
         list[index1] = list[index2];
         list[index2] = temporaryElement;
     }
 
+    /// <summary>
+    /// Bubble sort method.
+    /// </summary>
+    /// <param name="list">Input list for sorting.</param>
+    /// <param name="comparer">Comparer for type T.</param>
     public static void Sort(List<T> list, IComparer<T> comparer)
     {
         for (int i = 0; i < list.Count; ++i)
