@@ -11,12 +11,12 @@ public static class SparseVector
     /// <param name="firstVector">First sparse vector.</param>
     /// <param name="secondVector">Second sparse vector.</param>
     /// <returns>Result of addition of two sparse vectors.</returns>
-    public static List<(int, int)> Add(List<(int, int)> firstVector, List<(int, int)> secondVector)
+    public static List<(int, int)> Add(List<(int index, int value)> firstVector, List<(int index, int value)> secondVector)
     {
         List<(int, int)> result = new();
 
-        var lastPosOfFirstVector = firstVector.Last().Item1;
-        var lastPosOfSecondVector = secondVector.Last().Item1;
+        var lastPosOfFirstVector = firstVector.Last().index;
+        var lastPosOfSecondVector = secondVector.Last().index;
 
         if (lastPosOfFirstVector != lastPosOfSecondVector)
         {
