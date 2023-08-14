@@ -1,17 +1,31 @@
 ﻿namespace secondtask;
 
-public class LinkedListStack
+public class Stack
 {
-    private LinkedList<char> list;
-
-    public LinkedListStack()
+    private class Node
     {
-        list = new LinkedList<char>();
+        public char Value { get; }
+        public Node? Next { get; }
+
+        public Node(char value, Node? next)
+        {
+            Value = value;
+            Next = next;
+        }
     }
+
+    private Node? head;
 
     public void Push(char value)
     {
-        list.AddLast(value);
+        if (head == null)
+        {
+            head = new Node(value, null);
+        }
+        else
+        {
+            head = new Node(value, head);
+        }
     }
 
     public char Pop()
@@ -20,20 +34,20 @@ public class LinkedListStack
         {
             throw new InvalidOperationException("Can't pop from empty stack!");
         }
-        var poppedElement = list.Last();
-        list.RemoveLast();
+        var poppedElement = head.Value;
+        head = head.Next;
         return poppedElement;
     }
 
     public bool IsEmpty
-        => list.First == null;
+        => head == null;
 }
 
 public static class BracketBalance
 {
     public static bool IsBalanced(string expression)
     {
-        var stack = new LinkedListStack();
+        var stack = new Stack();
 
         foreach (var symbol in expression)
         {
@@ -43,10 +57,13 @@ public static class BracketBalance
             }
             else if (symbol == ')' || symbol == ']' || symbol == '}')
             {
+                if (stack.IsEmpty)
+                {
+                    return false;
+                }
                 var openingBracket = stack.Pop();
                 var closingBracket = symbol;
-                if (stack.IsEmpty ||
-                    !((openingBracket == '(' && closingBracket == ')') ||
+                if (!((openingBracket == '(' && closingBracket == ')') ||
                       (openingBracket == '{' && closingBracket == '}') ||
                       (openingBracket == '[' && closingBracket == ']')))
                 {
