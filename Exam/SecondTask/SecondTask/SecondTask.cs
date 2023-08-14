@@ -1,5 +1,8 @@
 ﻿namespace secondtask;
 
+/// <summary>
+/// Class that represents data structure Stack.
+/// </summary>
 public class Stack
 {
     private class Node
@@ -16,6 +19,10 @@ public class Stack
 
     private Node? head;
 
+    /// <summary>
+    /// Pushes element on the top of the stack.
+    /// </summary>
+    /// <param name="value">Value of the element.</param>
     public void Push(char value)
     {
         if (head == null)
@@ -28,6 +35,10 @@ public class Stack
         }
     }
 
+    /// <summary>
+    /// Pops element from the top of the stack.
+    /// </summary>
+    /// <returns>Popped element.</returns>
     public char Pop()
     {
         if (IsEmpty)
@@ -39,12 +50,23 @@ public class Stack
         return poppedElement;
     }
 
+    /// <summary>
+    /// Checks if stack doesn't have any elements.
+    /// </summary>
     public bool IsEmpty
         => head == null;
 }
 
+/// <summary>
+/// Class for bracket balancing.
+/// </summary>
 public static class BracketBalance
 {
+    /// <summary>
+    /// Checks if given expression is balanced for brackets.
+    /// </summary>
+    /// <param name="expression">Input bracket expression.</param>
+    /// <returns>true - if balanced, false - if not balanced.</returns>
     public static bool IsBalanced(string expression)
     {
         var stack = new Stack();
