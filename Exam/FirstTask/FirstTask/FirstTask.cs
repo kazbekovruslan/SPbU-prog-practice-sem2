@@ -2,8 +2,16 @@
 
 using System;
 
+/// <summary>
+/// Class for finding most frequent element.
+/// </summary>
 public static class MostFrequent
 {
+    /// <summary>
+    /// Finds most frequent element in array.
+    /// </summary>
+    /// <param name="array">Input array.</param>
+    /// <returns>Most frequent element.</returns>
     public static int FindMostFrequentElementInArray(int[] array)
     {
         if (array == null)
