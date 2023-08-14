@@ -4,7 +4,7 @@ using System;
 
 public static class MostFrequent
 {
-    static int FindMostFrequentElementInArray(int[] array)
+    public static int FindMostFrequentElementInArray(int[] array)
     {
         if (array == null)
         {
